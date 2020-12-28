@@ -104,6 +104,9 @@ fn main() {
 
     let disabled = disabled_path.exists();
 
+    let mut reports_path = path.path();
+    reports_path.push("reports.txt");
+
     if running {
       online_count += 1;
     }
@@ -127,6 +130,20 @@ fn main() {
           println!("{}{}disabled{} {}", msg_yes, color::GREY, color::RESET, name);
         } else {
           println!("{}{}already disabled{} {}", msg_info, color::GREY, color::RESET, name);
+        }
+      }
+      "reports" => {
+        if !reports_path.exists() {
+          println!("{}{} {}has no reports{}", msg_no, name, color::GREY, color::RESET);
+        } else {
+          println!(
+            "{}{}reports for{} {}\n{}",
+            msg_yes,
+            color::GREY,
+            color::RESET,
+            name,
+            fs::read_to_string(reports_path).expect("error reading reports").trim()
+          );
         }
       }
       "status" => {
