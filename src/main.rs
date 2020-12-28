@@ -8,7 +8,7 @@ mod bzfplayers;
 mod color;
 
 fn print_help() {
-  println!("usage: {} <help|status|list|start|stop|reports|log|enable|disable> [map]", env!("CARGO_PKG_NAME"));
+  println!("usage: {} <help|status|list|start|stop|reports|enable|disable> [map]", env!("CARGO_PKG_NAME"));
   std::process::exit(0);
 }
 
