@@ -193,7 +193,7 @@ fn main() {
           .expect("failed to start bzfs");
 
         while !is_running(&pid_path) {}
-        println!("{}started {}", msg_yes, name);
+        println!("{}{}started{} {}", msg_yes, color::GREY, color::RESET, name);
       }
       "stop" => {
         if !running {
@@ -213,7 +213,7 @@ fn main() {
           .expect("failed to execute process");
         while is_running(&pid_path) {}
 
-        println!("{}stopped {}", msg_yes, name);
+        println!("{}{}stopped{} {}", msg_yes, color::GREY, color::RESET, name);
       }
       _ => {
         println!("command '{}' not found", args[0]);
