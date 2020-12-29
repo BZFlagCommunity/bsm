@@ -177,6 +177,9 @@ fn main() {
         if running {
           println!("{}{} {}already running{}", msg_no, name, color::GREY, color::RESET);
           continue;
+        }else if disabled {
+          println!("{}{} {}disabled{}", msg_no, name, color::GREY, color::RESET);
+          continue;
         }
 
         Command::new("sh")
