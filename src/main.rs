@@ -134,7 +134,7 @@ fn main() {
       }
       "reports" => {
         if !reports_path.exists() {
-          println!("{}{} {}has no reports{}", msg_no, name, color::GREY, color::RESET);
+          println!("{}{} {}has no reports{}", msg_info, name, color::GREY, color::RESET);
         } else {
           println!(
             "{}{}reports for{} {}\n{}",
@@ -188,7 +188,7 @@ fn main() {
           .stdout(Stdio::null())
           .stderr(Stdio::null())
           .arg("-c")
-          .arg("bzfs -a 50 38 -conf ../../configs/master.conf -pidfile pid 2>&1 | ../../log.sh")
+          .arg("bzfs -conf ../../configs/master.conf -pidfile pid 2>&1 | ../../log.sh")
           .spawn()
           .expect("failed to start bzfs");
 
@@ -203,7 +203,7 @@ fn main() {
 
         let player_count = bzfplayers::get_count(&port);
         if player_count > 0 {
-          println!("{}skipping {} {}- {} players online{}", msg_no, name, color::GREY, player_count, color::RESET);
+          println!("{}{}skipping{} {} {}- {} players online{}", msg_no, color::GREY, color::RESET, name, color::GREY, player_count, color::RESET);
           continue;
         }
 
