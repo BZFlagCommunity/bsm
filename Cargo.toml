@@ -1,8 +1,14 @@
 [package]
-name = "bzfs-manager"
+name = "bsm"
 version = "0.1.0"
 authors = ["The Noah <thenoahbz@gmail.com>"]
 edition = "2018"
+description = "BZFlag server manager"
+categories = ["command-line-utilities"]
+readme = "README.md"
+homepage = "https://github.com/BZFlagCommunity/bsm"
+repository = "https://github.com/BZFlagCommunity/bsm"
+license-file = "LICENSE"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

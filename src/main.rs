@@ -177,7 +177,7 @@ fn main() {
         if running {
           println!("{}{} {}already running{}", msg_no, name, color::GREY, color::RESET);
           continue;
-        }else if disabled {
+        } else if disabled {
           println!("{}{} {}disabled{}", msg_no, name, color::GREY, color::RESET);
           continue;
         }
@@ -203,7 +203,16 @@ fn main() {
 
         let player_count = bzfplayers::get_count(&port);
         if player_count > 0 {
-          println!("{}{}skipping{} {} {}- {} players online{}", msg_no, color::GREY, color::RESET, name, color::GREY, player_count, color::RESET);
+          println!(
+            "{}{}skipping{} {} {}- {} players online{}",
+            msg_no,
+            color::GREY,
+            color::RESET,
+            name,
+            color::GREY,
+            player_count,
+            color::RESET
+          );
           continue;
         }
 
