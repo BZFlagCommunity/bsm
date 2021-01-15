@@ -81,6 +81,8 @@ fn main() {
   let mut online_count = 0;
   let mut disabled_count = 0;
 
+  let public_key = fs::read_to_string("configs/publickey").unwrap_or(String::new());
+
   for path in &paths {
     let name = path.file_name().into_string().unwrap_or("??".to_string());
 
@@ -188,7 +190,13 @@ fn main() {
           .stdout(Stdio::null())
           .stderr(Stdio::null())
           .arg("-c")
-          .arg("bzfs -conf ../../configs/master.conf -pidfile pid 2>&1 | ../../log.sh")
+          .arg(
+            format!(
+              "bzfs -conf ../../configs/master.conf -pidfile pid {}2>&1 | ../../log.sh",
+              if public_key.is_empty() { String::new() } else { format!("-publickey {} ", public_key) }
+            )
+            .as_str(),
+          )
           .spawn()
           .expect("failed to start bzfs");
 
