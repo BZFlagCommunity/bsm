@@ -81,7 +81,9 @@ fn main() {
   let mut online_count = 0;
   let mut disabled_count = 0;
 
-  let public_key = fs::read_to_string("configs/publickey").unwrap_or(String::new());
+  let publickey = fs::read_to_string("configs/publickey").unwrap_or(String::new());
+  let use_groups = Path::new("configs/groups.txt").exists();
+  let use_badwords = Path::new("configs/badwords.txt").exists();
 
   for path in &paths {
     let name = path.file_name().into_string().unwrap_or("??".to_string());
@@ -192,8 +194,10 @@ fn main() {
           .arg("-c")
           .arg(
             format!(
-              "bzfs -conf ../../configs/master.conf -pidfile pid {}2>&1 | ../../log.sh",
-              if public_key.is_empty() { String::new() } else { format!("-publickey {} ", public_key) }
+              "bzfs -conf ../../configs/master.conf -ts -utc -conf config.conf -world map.bzw -pidfile pid -reportfile reports.txt -banfile ../../configs/ban-list.txt {}{}{}2>&1 | ../../log.sh",
+              if publickey.is_empty() { String::new() } else { format!("-publickey {} ", publickey.trim()) },
+              if use_groups { "-groupdb ../../configs/groups.txt " } else { "" },
+              if use_badwords { "-badwords ../../configs/badwords.txt " } else { "" }
             )
             .as_str(),
           )
