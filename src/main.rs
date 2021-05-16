@@ -194,7 +194,7 @@ fn main() {
           .arg("-c")
           .arg(
             format!(
-              "bzfs -conf ../../configs/master.conf -ts -utc -conf config.conf -world map.bzw -pidfile pid -reportfile reports.txt -banfile ../../configs/ban-list.txt {}{}{}2>&1 | ../../log.sh",
+              "bzfs -conf ../../configs/master.conf -ts -utc -conf config.conf -world map.bzw -pidfile pid -reportfile reports.txt -banfile ../../configs/ban-list.txt {}{}{}2>&1 | bsm-log",
               if publickey.is_empty() { String::new() } else { format!("-publickey {} ", publickey.trim()) },
               if use_groups { "-groupdb ../../configs/groups.txt " } else { "" },
               if use_badwords { "-badwords ../../configs/badwords.txt " } else { "" }
